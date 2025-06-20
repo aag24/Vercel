@@ -1,0 +1,30 @@
+{
+  "name": "vercel",
+  "version": "1.0.0",
+  "description": "This serverless function allows logging a workout via POST request.",
+  "type": "module",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "dev": "node api/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aag24/Vercel.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aag24/Vercel/issues"
+  },
+  "homepage": "https://github.com/aag24/Vercel#readme",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.50.0",
+    "dotenv": "^16.5.0",
+    "jsonwebtoken": "^9.0.2"
+  }
+}
