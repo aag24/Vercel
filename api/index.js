@@ -1,4 +1,3 @@
-//tester
 import { createClient } from '@supabase/supabase-js';
 import jwt from 'jsonwebtoken';
 
