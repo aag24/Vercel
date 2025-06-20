@@ -1,4 +1,3 @@
-// Force redeploy - file confirmed
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ message: 'Only POST allowed' });
@@ -10,7 +9,7 @@ export default async function handler(req, res) {
     return res.status(400).json({ message: 'Missing required fields' });
   }
 
-  // Simulate saving to Supabase (replace this with real API call)
+  // Placeholder for Supabase integration
   console.log("Saving to Supabase:", { user_name, date, exercise, sets, reps, notes });
 
   return res.status(200).json({ message: 'Workout logged successfully' });
