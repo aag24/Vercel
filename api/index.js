@@ -7,11 +7,11 @@ const supabase = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY
 );
 
-// JWT secret from Supabase project settings
+// Get your Supabase JWT secret from environment
 const JWT_SECRET = process.env.SUPABASE_JWT_SECRET;
 
 export default async function handler(req, res) {
-  // Only allow POST
+  // Only allow POST requests
   if (req.method !== 'POST') {
     return res.status(405).json({ message: 'Only POST allowed' });
   }
@@ -22,7 +22,7 @@ export default async function handler(req, res) {
     return res.status(401).json({ message: 'Missing or invalid authorization header' });
   }
 
-  // Extract and verify JWT token
+  // Extract and verify JWT
   const token = authHeader.split(' ')[1];
   let decoded;
   try {
@@ -31,25 +31,21 @@ export default async function handler(req, res) {
     return res.status(401).json({ message: 'Invalid or expired token' });
   }
 
-  // Destructure workout data from request
+  // Validate request body
   const { user_name, date, exercise, sets, reps, notes } = req.body;
-
-  // Basic validation
   if (!user_name || !date || !exercise) {
     return res.status(400).json({ message: 'Missing required fields' });
   }
 
-  // Insert into Supabase
+  // Insert workout into Supabase
   const { error } = await supabase.from('workouts').insert([
     { user_name, date, exercise, sets, reps, notes }
   ]);
 
-  // Error handling
   if (error) {
     console.error('Supabase insert error:', error);
     return res.status(500).json({ message: 'Failed to log workout' });
   }
 
-  // Success response
   return res.status(200).json({ message: 'Workout logged successfully' });
 }
